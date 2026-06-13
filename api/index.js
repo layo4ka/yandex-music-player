@@ -574,6 +574,18 @@ export default async function handler(req, res) {
               }
             }
           }
+        if (tracks.length === 0) {
+          console.warn("[Proxy] My Wave and likes empty. Falling back to chart tracks.");
+          try {
+            const chartResponse = await customFetch('https://api.music.yandex.net/landing3/chart', { headers });
+            if (chartResponse.ok) {
+              const chartData = await chartResponse.json();
+              const chartTracks = chartData.result?.chart?.tracks || [];
+              tracks = chartTracks.map(item => item.track || item).filter(Boolean);
+            }
+          } catch (chartErr) {
+            console.error("Chart fallback failed:", chartErr);
+          }
         }
 
         res.end(JSON.stringify({ result: tracks }));

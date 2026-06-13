@@ -389,8 +389,8 @@ export default function App() {
     if (savedHistory) {
       try {
         const parsed = JSON.parse(savedHistory);
-        playedRadioTrackIdsRef.current = parsed;
-        setPlayedRadioTrackIds(parsed);
+        playedRadioTrackIdsRef.current = Array.isArray(parsed) ? parsed : [];
+        setPlayedRadioTrackIds(playedRadioTrackIdsRef.current);
       } catch (e) {
         console.error(e);
       }
@@ -879,7 +879,8 @@ export default function App() {
                 return false;
               }
 
-              return !playedRadioTrackIdsRef.current.includes(t.yandexId) || isSeedTrack;
+              const history = playedRadioTrackIdsRef.current || [];
+              return !history.includes(t.yandexId) || isSeedTrack;
             });
 
             for (const t of filtered) {
