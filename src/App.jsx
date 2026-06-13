@@ -647,6 +647,9 @@ export default function App() {
     let accumulatedTracks = [];
     let success = false;
     
+    const recentPlayedIds = playedRadioTrackIdsRef.current.slice(-20);
+    const immediatePlayedIds = playedRadioTrackIdsRef.current.slice(-5);
+    
     while (attempts < 3 && accumulatedTracks.length < 5) {
       attempts++;
       try {
@@ -668,22 +671,51 @@ export default function App() {
               }
             }
             
-            const filtered = uniqueIncoming.filter(t => 
+            // 1. Try completely unplayed tracks (not in last 300 history)
+            const filteredAll = uniqueIncoming.filter(t => 
               !playedRadioTrackIdsRef.current.includes(t.yandexId)
             );
             
-            for (const t of filtered) {
+            for (const t of filteredAll) {
               if (!accumulatedTracks.some(a => a.yandexId === t.yandexId)) {
                 accumulatedTracks.push(t);
               }
             }
-
-            // Fill up with other unique incoming if we have less than 5 tracks to prevent queue starvation
+            
+            // 2. If less than 5, allow tracks not played in the last 20 plays
             if (accumulatedTracks.length < 5) {
-              for (const t of uniqueIncoming) {
+              const filteredRecent = uniqueIncoming.filter(t => 
+                !recentPlayedIds.includes(t.yandexId)
+              );
+              for (const t of filteredRecent) {
                 if (!accumulatedTracks.some(a => a.yandexId === t.yandexId)) {
                   accumulatedTracks.push(t);
-                  if (accumulatedTracks.length >= 5) break;
+                }
+              }
+            }
+
+            // 3. If still less than 5, allow tracks not played in the last 5 plays (strict exclusion of active track)
+            if (accumulatedTracks.length < 5) {
+              const activeYandexId = activeTrackRef.current?.yandexId;
+              const filteredImmediate = uniqueIncoming.filter(t => 
+                !immediatePlayedIds.includes(t.yandexId) && t.yandexId !== activeYandexId
+              );
+              for (const t of filteredImmediate) {
+                if (!accumulatedTracks.some(a => a.yandexId === t.yandexId)) {
+                  accumulatedTracks.push(t);
+                }
+              }
+            }
+
+            // 4. Absolute fallback: allow anything except active track and the immediate last played track to avoid silence
+            if (accumulatedTracks.length < 5) {
+              const activeYandexId = activeTrackRef.current?.yandexId;
+              const lastPlayedId = playedRadioTrackIdsRef.current[playedRadioTrackIdsRef.current.length - 1];
+              for (const t of uniqueIncoming) {
+                if (t.yandexId !== activeYandexId && t.yandexId !== lastPlayedId) {
+                  if (!accumulatedTracks.some(a => a.yandexId === t.yandexId)) {
+                    accumulatedTracks.push(t);
+                  }
                 }
               }
             }
@@ -715,6 +747,11 @@ export default function App() {
         if (finalTracks.length > 0) {
           return [...baseQueue, ...finalTracks];
         } else if (upcomingQueue.length === 0) {
+          // Exclude the currently playing track to avoid back-to-back replication when adding repeated recommendations
+          const nonActiveAccumulated = accumulatedTracks.filter(t => t.yandexId !== activeTrackRef.current?.yandexId);
+          if (nonActiveAccumulated.length > 0) {
+            return [...baseQueue, ...nonActiveAccumulated];
+          }
           return [...baseQueue, ...accumulatedTracks];
         } else {
           return baseQueue;
@@ -741,7 +778,12 @@ export default function App() {
                 }
               }
               const finalTracks = mapped.filter(t => !baseQueue.some(q => q.yandexId === t.yandexId));
-              return [...baseQueue, ...(finalTracks.length > 0 ? finalTracks : mapped)];
+              if (finalTracks.length > 0) {
+                return [...baseQueue, ...finalTracks];
+              } else {
+                const nonActiveMapped = mapped.filter(t => t.yandexId !== activeTrackRef.current?.yandexId);
+                return [...baseQueue, ...(nonActiveMapped.length > 0 ? nonActiveMapped : mapped)];
+              }
             });
           }
         }
