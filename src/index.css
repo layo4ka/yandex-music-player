@@ -684,9 +684,9 @@ body.theme-dark .ambient-bg {
   max-width: 1240px;
   height: 92px;
   background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.002) 55%, rgba(255, 255, 255, 0.02) 100%);
-  backdrop-filter: blur(3px) saturate(145%) brightness(108%);
-  -webkit-backdrop-filter: blur(3px) saturate(145%) brightness(108%);
+    linear-gradient(135deg, rgba(15, 20, 35, 0.75) 0%, rgba(10, 14, 26, 0.55) 55%, rgba(12, 16, 30, 0.65) 100%);
+  backdrop-filter: blur(24px) saturate(145%) brightness(108%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%) brightness(108%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top-color: rgba(255, 255, 255, 0.28);
   border-left-color: rgba(255, 255, 255, 0.28);
@@ -1123,9 +1123,9 @@ body.theme-dark .ambient-bg {
 .main-right-column {
   width: 360px;
   background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.005) 55%, rgba(255, 255, 255, 0.04) 100%);
-  backdrop-filter: blur(3px) saturate(145%) brightness(108%);
-  -webkit-backdrop-filter: blur(3px) saturate(145%) brightness(108%);
+    linear-gradient(135deg, rgba(15, 20, 35, 0.75) 0%, rgba(10, 14, 26, 0.55) 55%, rgba(12, 16, 30, 0.65) 100%);
+  backdrop-filter: blur(24px) saturate(145%) brightness(108%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%) brightness(108%);
   border: 1.5px solid rgba(255, 255, 255, 0.26);
   border-top-color: rgba(255, 255, 255, 0.58);
   border-left-color: rgba(255, 255, 255, 0.58);
@@ -1713,9 +1713,9 @@ body.theme-dark .ambient-bg {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(4, 6, 12, 0.45);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(4, 6, 12, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1725,9 +1725,9 @@ body.theme-dark .ambient-bg {
 
 .lyrics-modal-content {
   background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.005) 55%, rgba(255, 255, 255, 0.04) 100%);
-  backdrop-filter: blur(3px) saturate(145%) brightness(108%);
-  -webkit-backdrop-filter: blur(3px) saturate(145%) brightness(108%);
+    linear-gradient(135deg, rgba(15, 20, 35, 0.75) 0%, rgba(10, 14, 26, 0.55) 55%, rgba(12, 16, 30, 0.65) 100%);
+  backdrop-filter: blur(24px) saturate(145%) brightness(108%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%) brightness(108%);
   border: 1.5px solid rgba(255, 255, 255, 0.26);
   border-top-color: rgba(255, 255, 255, 0.58);
   border-left-color: rgba(255, 255, 255, 0.58);
