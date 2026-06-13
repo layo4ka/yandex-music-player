@@ -684,7 +684,7 @@ body.theme-dark .ambient-bg {
   max-width: 1240px;
   height: 92px;
   background: 
-    linear-gradient(135deg, rgba(16, 21, 37, 0.88) 0%, rgba(10, 14, 26, 0.82) 55%, rgba(12, 16, 30, 0.85) 100%);
+    linear-gradient(135deg, rgba(15, 20, 35, 0.78) 0%, rgba(10, 14, 26, 0.62) 55%, rgba(12, 16, 30, 0.70) 100%);
   backdrop-filter: blur(28px) saturate(145%) brightness(108%);
   -webkit-backdrop-filter: blur(28px) saturate(145%) brightness(108%);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1123,9 +1123,9 @@ body.theme-dark .ambient-bg {
 .main-right-column {
   width: 360px;
   background: 
-    linear-gradient(135deg, rgba(16, 22, 38, 0.90) 0%, rgba(10, 14, 26, 0.85) 55%, rgba(12, 16, 30, 0.88) 100%);
-  backdrop-filter: blur(36px) saturate(145%) brightness(108%);
-  -webkit-backdrop-filter: blur(36px) saturate(145%) brightness(108%);
+    linear-gradient(135deg, rgba(15, 22, 38, 0.80) 0%, rgba(10, 14, 26, 0.65) 55%, rgba(12, 16, 30, 0.72) 100%);
+  backdrop-filter: blur(32px) saturate(145%) brightness(108%);
+  -webkit-backdrop-filter: blur(32px) saturate(145%) brightness(108%);
   border: 1.5px solid rgba(255, 255, 255, 0.26);
   border-top-color: rgba(255, 255, 255, 0.58);
   border-left-color: rgba(255, 255, 255, 0.58);
@@ -1713,7 +1713,7 @@ body.theme-dark .ambient-bg {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(4, 6, 12, 0.85);
+  background-color: rgba(4, 6, 12, 0.78);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   display: flex;
@@ -1725,7 +1725,7 @@ body.theme-dark .ambient-bg {
 
 .lyrics-modal-content {
   background: 
-    linear-gradient(135deg, rgba(18, 23, 37, 0.94) 0%, rgba(10, 14, 26, 0.90) 55%, rgba(14, 18, 32, 0.92) 100%);
+    linear-gradient(135deg, rgba(15, 20, 35, 0.80) 0%, rgba(10, 14, 26, 0.65) 55%, rgba(12, 16, 30, 0.72) 100%);
   backdrop-filter: blur(28px) saturate(145%) brightness(108%);
   -webkit-backdrop-filter: blur(28px) saturate(145%) brightness(108%);
   border: 1.5px solid rgba(255, 255, 255, 0.26);
@@ -1892,7 +1892,7 @@ body.theme-dark .ambient-bg {
   font-size: 22px;                 /* Increased from 19px */
   line-height: 1.5;                /* Increased from 1.4 */
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.55);
   text-align: center;
   padding: 12px 20px;              /* Increased from 10px 16px */
   border-radius: 16px;             /* Increased from 14px */
